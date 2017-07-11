@@ -3,5 +3,12 @@ class Job < ApplicationRecord
   validates :wage_upper_bound, presence: true, numericality: {greater_than: :wage_lower_bound,message: "薪水下限不能高于薪水上限"}
   validates :wage_lower_bound, presence:true, numericality: {greater_than: 0}
 
-
+  def publish!
+    self.is_hidden = false
+    self.save
+  end
+  def hide!
+    self.is_hidden = true
+    self.save
+  end
 end
